@@ -17,7 +17,6 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-<br><br>
 Computer Science PhD Student with a background in deep learning and parallel/scalable computing.
 
 I'm interested in efficient inference/training of deep models, different tokenization schemes for natural language, VQ-VAE models, and task composition/decomposition.
