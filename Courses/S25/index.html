@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+
+        <title>CSCI 5541, Natural Language Processing</title>
+        <link rel="icon" type="image/x-icon" href="assets/nlp24fall.png">
+
+        <link rel="canonical" href="">
+        <!-- our project just needs Font Awesome Solid + Brands -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" type="text/css" href="css/main.css" >
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">CSCI 5541 Natural Language Processing (NLP), Fall 2024</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <div style="padding-top: 15px;" class="card">
+
+  <h1 id="csci-8980-06-intro-to-nlp">CSCI 5541, NLP</h1>
+
+  <h3 style="font-weight: 300;">Spring 2025, Tuesdays and Thursdays , 4:00pm to 5:15pm, Lind Hall L125
+</h3>
+
+  <hr />
+
+  <div class="row">
+<ul class="nav nav-pills">
+    <li>
+        <a href="#info">Course Information</a>
+    </li>
+    <li>
+        <a href="#schedule">Schedule</a>
+    </li>
+    <li>
+        <a href="#grading">Grading</a>
+    </li>
+    <li>
+        <a href="#homework">Homeworks</a>
+    </li>
+	<li>
+        <a href="#project">Projects</a>
+    </li>	
+    <li>
+        <a href="#prereqs">Prerequisite</a>
+    </li>		
+    <li>
+        <a href="#note">Notes</a>
+    </li>
+    <li>
+        <a href="#related">Resources</a>
+    </li>
+</ul>
+</div>
+
+</div>
+
+<p><a name="info"></a></p>
+<div class="card">
+
+  <h2 id="course-information">Course Information</h2>
+<br/>
+  <p>
+
+    <p>
+        <b>Summary</b> The purpose of this course is to provide an overview of the computational techniques developed to enable computers to interpret and respond appropriately to ideas expressed using natural languages, rather than formal languages, such as C++ or Python. This course will cover text classification, distributional representation methods of language, large language models, and advanced techniques in chatGPT. The course will cover a wide range of topics related to NLP, including theories, computational models, and applications with their societal and ethical impacts. Prerequisite: Maturity in linear algebra, calculus, and basic probability. Familiarity with Python. 5521 (recommended) or grad, 
+    </p>
+
+    <p>
+    Natural Language Processing (NLP) is an interdisciplinary field that is based on theories in linguistics, cognitive science, and social science. The main focus of NLP is building computational models for applications such as machine translation and dialogue systems that can then interact with real users. Research and development in NLP therefore also includes considering important issues related to real-world AI systems, such as bias, controllability, interpretability, and ethics. This course will cover a broad range of topics related to NLP, from theories to computational models and applications to data annotation and evaluation. 
+    Students will read papers on those topics, create an annotated dataset, and implement algorithms on applications they are interested in. 
+    There will be a semester-long class project where you collect your own dataset, ensure it is accurate, develop a model using existing computing tools, evaluate the system, and consider its ethical and societal impacts. 
+    
+    </p>
+
+    
+    <p>
+        The grade will be evaluated based on the course project, participation, and programming and reading assignments.
+    All class material will be posted on the <a href="#">class site</a>. 
+    We will use <a href="https://canvas.umn.edu/courses/483164">Canvas</a> for homework and project submissions and grading, and Slack for discussion and QA. Email inquiries will be not be replied.
+    </p>
+
+
+
+    <dl class="dl-horizontal">
+        <dt>Instructors</dt>
+        <dd>
+            <br>
+            <div class="col-md-12">
+                <div class="row">
+                    <figure class="member_figure">
+                        <img class="member_image" src="https://minnesotanlp.github.io/img/members/james.jpeg" alt="James Mooney">
+                        <figcaption class="member_image_caption">
+                        <a href="https://jimtmooney.github.io/">James Mooney</a>
+                        <br>Instructor
+                        </figcaption>
+                    </figure>
+                    <figure class="member_figure">
+                        <img class="member_image" src="" alt="Risako Owan">
+                        <figcaption class="member_image_caption">
+                        <a href="">Risako Owan</a>
+                        <br>Graduate TA
+                        </figcaption>
+                    </figure>
+                    <figure class="member_figure">
+                        <img class="member_image" src="" alt="Bin Hu">
+                        <figcaption class="member_image_caption">
+                        <a href="">Bin Hu</a>
+                        <br>Undergraduate TA 
+                        </figcaption>
+                    </figure>                   
+                    <figure class="member_figure">
+                        <img class="member_image" src="" alt="Junhan Wu">
+                        <figcaption class="member_image_caption">
+                        <a href="">Junhan Wu</a>
+                        <br>Undergraduate TA 
+                        </figcaption>
+                    </figure>                           
+                </div>
+            </div>
+        </dd>
+        <dt>Class meets</dt>
+        <dd>Tuesday and Thursday, 4PM to 5:15PM, Lind Hall L125</dd>
+
+        <dt>Office hours</dt> 
+        <dd>James: Friday 3pm - 4pm via <a href="https://umn.zoom.us/j/6209842140">Zoom</a> </dd>
+        <dd>Risako: TBD</dd>
+        <dd>Bin: TBD</dd>
+        <dd>Junhan: TBD</dd>
+
+        <dt>Class page</dt>
+        <dd><a href="https://dykang.github.io/classes/csci5541/F24">https://dykang.github.io/classes/csci5541/F24</a></dd>	
+        <dt>Slack</dt>
+        <dd><a href="https://csci5541s25.slack.com/">https://csci5541s25.slack.com/</a></dd>
+        <dt>Canvas</dt>
+        <dd><a href="https://canvas.umn.edu/courses/483164">canvas.umn.edu/courses/483164</a></dd>
+    </dl>
+</div>
+
+
+
+
+<p><a name="grading"></a></p>
+<div class="card">
+    <h2 id="grading">Grading and Late Policy</h2>
+    <h4 id="late-policy-for-deliverables">Grading</h4>
+    <ul>
+        <li>60% <a href="#homework">Homework</a> (hw1/2/3/6 for individual, hw4/5 for team)</li>
+        <li>30% <a href="#project">Project</a> (team)</li>
+        <li>10%  <a href="#participation">Class Participation</a> (individual)</li>
+    </ul>
+    
+    <h4 id="late-policy-for-deliverables">Late policy for deliverables</h4>
+    Each student will be granted <b>5 late days</b> to use for homeworks over the duration of the semester.
+    After all free late days are used up, penalty is 1 point for each additional late day.	
+    The late days and penalty will be applied to all team members for group homework and project.
+</div>
+
+
+
+<p><a name="schedule"></a></p>
+<div class="card">
+
+  <h2 id="schedule">Schedule</h2>
+<br/>
+<p>
+    We will cover <span style="background-color: rgba(241, 196, 15, 0.2);">basic NLP representations g(x)</span>, to build <span style="background-color: rgba(52, 152, 219, 0.2);">text classifiers P_theta(y|g(x)) </span>, <span style="background-color: rgba(231, 76, 60, 0.1)">language models P_theta(g(x))</span>, and <span style="background-color: rgba(26, 188, 156, 0.1)">large language models P_{theta is large}(g(x))</span>.
+
+    Based on knowledge you gain during the class, your team will develop your own NLP systems during the <span style="background-color: rgba(155, 89, 182, 0.1);">semester-long project</span>.
+    Pay attention to <span style="color:red">due dates</span> and <span style="color:blue">homework release</span>. 
+    Lecture slides and homework/project description will be available in <i class="fa-regular fa-file-pdf"></i>.
+</p>
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr class="table-active">
+            <td style="width: 7%; text-align: center">Date</td>
+            <td style="width: 35%;">Lectures and Dues</td>
+            <td style="width: 55%;">Readings 
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr class="light-mod0"  id="overview">
+            <td>Jan 21</td>
+            <td>
+                <span style="color:black">Class Overview</span> <!-- <a href="slides/0903_overview.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="light-mod0" id="intro">
+            <td>Jan 23</td>
+            <td>
+                <span style="color:black">Intro to NLP</span> <!-- <a href="slides/0905_intro.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+                <span style="color:blue">HW1 out</span> <!-- <a href="hw/csci5541f24_HW1.pdf"><i class="fa-regular fa-file-pdf"></i> --></a>
+                <br/>
+
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="light-mod0" id="intro">
+            <td>Jan 27</td>
+            <td>
+                <span style="color:black">Recitation on computing basics</span> 
+                <ul>
+                    <li>Env Setup <!-- <a href="https://docs.google.com/presentation/d/1l6lJxWIT-5waeo2_57VijU15aux7_tiaRjBmSn6Lras/edit#slide=id.g2fb2bf25223_0_0"><i class="fa-regular fa-file-powerpoint"></i></a> --></li>
+                    <li>Colab+JupyterNotebook Tutorial <!-- <a href="https://docs.google.com/presentation/d/1Thc3-yXwWSS12j-c9hSMU6dSQJTHeCffiw5swbZjE9s/edit#slide=id.p"><i class="fa-regular fa-file-powerpoint"></i></a> --></li>
+                    <li>PyTorch Basics<!--  <a href="https://docs.google.com/presentation/d/1CE7xFTKGkFGn7TQLaEiMRTXizKhTwEXD0E376zc_x6Y/edit#slide=id.p"><i class="fa-regular fa-file-powerpoint"></i></a> --></li>
+                </ul>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <!-- ----------- -->
+        <tr class="light-mod1" id="classification1">
+            <td>Jan 28</td>
+            <td> 
+                <span style="color:black">Text Classification</span> <!-- <a href="slides/0910_classification.pdf"><i class="fa-regular fa-file-pdf"></i></a> --> <br />
+                <span style="color:black">Tutorial on Scikit-Learn and PyTorch: <!-- <a href="https://docs.google.com/presentation/d/1ZNK8rQVfXfoFnIdL84z37HCy_wNpRjNtBdHLNO0irn8/edit?usp=sharing"><i class="fa-regular fa-file-powerpoint"></i></a> <a href="https://colab.research.google.com/drive/186gSRqu2b1K8foU9-9ROkMf0sByOoPOi?usp=sharing"><i class="fa-solid fa-book-open"></i></a> --> <br />
+                <!-- href="https://docs.google.com/presentation/d/1IcaU_ODn0GEs3G4aSJ4DwrPuDhALXN_1plOFUvoD0Ic/edit?usp=sharing" -->
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://aclanthology.org/C04-1200.pdf">Determining the sentiment of opinions</a></li>
+                    <li><a href="https://homes.cs.washington.edu/~nasmith/papers/oconnor+balasubramanyan+routledge+smith.icwsm10.pdf">From Tweets to Polls: Linking Text Sentiment to Public Opinion Time Series</a></li>
+                    <li><a href="https://nlp.stanford.edu/~socherr/EMNLP2013_RNTN.pdf">Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank</a></li>
+                    <li>Text classifier with <a href="https://www.nltk.org/book/ch06.html">NLTK</a> and <a href="https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html">Scikit-Learn</a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="light-mod1" id="classification2">
+            <td>Jan 30</td>
+            <td>
+                <span style="color:black">Text Classification (2)</span> <br />
+                <span style="color:black">Tutorial on Finetuning</span> <!-- <a href="https://docs.google.com/presentation/d/1WDysFb3lT4sgDLum0OOuNtsyxuMarfZbSF1gALUdL9w/edit?usp=sharing"><i class="fa-regular fa-file-powerpoint"></i></a> <a href="https://colab.research.google.com/drive/1TcVRfatSiRv8QN12ilYJVoRsqE8nsJuv?usp=sharing"><i class="fa-solid fa-book-open"></i></a>  -->
+               <!--  <a href="https://drive.google.com/file/d/1k2ByxFBQ_nlySRO3x0HpqIqRD06sWDzD/view?usp=sharing"><i class="fa-solid fa-video"></i></a> -->
+                (James)<br />
+
+                
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://aclanthology.org/2021.emnlp-main.510.pdf">Does BERT Learn as Humans Perceive? Understanding Linguistic Styles through Lexica</a></li>
+                    <li><a href="https://aclanthology.org/2021.acl-long.185.pdf">Style is NOT a single variable: Case Studies for Cross-Style Language Understanding</a></li>       
+                    <li><a href="https://aclanthology.org/2020.acl-main.442/">Beyond Accuracy: Behavioral Testing of NLP Models with CheckList</a></li>
+                    <li>Blog post on <a href="https://vitalflux.com/pre-training-vs-fine-tuning-in-llm-examples/#What%E2%80%99s_Pre-training_Task_in_LLM_Modeling">Pre-training vs Fine-tuning in LLM: Examples</a></li>
+                    <li>Tutorial on <a href="https://huggingface.co/docs/transformers/tasks/sequence_classification">Text classification using HuggingFace's Transformers</a></li>
+                </ul>
+            </td>
+        </tr>	
+        
+        <!-- ----------- -->
+
+        <tr class="light-mod3" id="finetuning">
+            <td>Feb 4</td>
+            <td>
+                <span style="color:black">Distributional Semantics and Word Vectors</span> <!-- <a href="slides/0917_distributional_semantics.pdf"><i class="fa-regular fa-file-pdf"></i></a>  --><br />
+                
+                <span style="color:red">HW1 due</span> <br />
+                <span style="color:blue">HW2 out</span> <!-- <a href="hw/csci5541f24_HW2.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br/>
+                Project description out <!-- <a href="hw/csci5541f24_project_description.pdf"><i class="fa-regular fa-file-pdf"></i></a>    -->             
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/1003.1141">From Frequency to Meaning: Vector Space Models of Semantics</a></li>
+                    <li><a href="https://arxiv.org/abs/1301.3781">Efficient Estimation of Word Representations in Vector Space</a></li>
+                    <li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/rvecs.pdf">Linguistic Regularities in Continuous Space Word Representations</a></li>
+                    <li><a href="https://nlp.stanford.edu/pubs/glove.pdf">GloVe: Global Vectors for Word Representation</a></li>
+                    <li><a href="https://arxiv.org/abs/1411.4166">Retrofitting Word Vectors to Semantic Lexicons</a></li>                    
+                    <li><a href="https://rare-technologies.com/word2vec-tutorial/">Gensim's word2vec tutorial</a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="light-mod2" id="lexical">
+            <td>Feb 6</td>
+            <td>
+                <span style="color:black">Distributional Semantics and Word Vectors (2)</span> <br />
+
+                <span style="color:red">Project Team Formation due</span> <br />
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+        <!-- ----------- -->
+
+        <tr class="light-mod4" id="distributional1">
+            <td>Feb 11</td>
+            <td>
+                <span style="color:black">Language Models (1): Ngram LM, Neural LM</span> <!-- <a href="slides/0924_lm_ngram.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+                <span style="color:red">HW2 due</span> <br />
+
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~jurafsky/slp3/3.pdf">Chapter 3 of Jurafsky and Martin</a></li>
+                    <li><a href="https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf">A Neural Probabilistic Language Model</a></li>
+
+                </ul>
+            </td>
+        </tr>
+        <tr class="light-mod2" id="lm_ngram">
+            <td>Feb 13</td>
+            <td>
+                <span style="color:black">Project Guideline</span> <!-- <a href="slides/0926_project_guideline.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+                <span style="color:black">Language Models (2): RNNs, LSTMs and Sequence-to-Sequence</span> <!-- <a href="slides/0926_lm_rnn_lstm_seq2seq.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+                <span style="color:blue">HW3 out</span> <!-- <a href="hw/csci5541f24_HW3.pdf"><i class="fa-regular fa-file-pdf"></i></a> -->
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://www.isca-speech.org/archive/pdfs/interspeech_2010/mikolov10_interspeech.pdf">Recurrent neural network based language model</a></li>
+                    <li><a href="https://deeplearning.cs.cmu.edu/F23/document/readings/LSTM.pdf">Long Short-Term Memory</a></li>
+                    <li><a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/differentiating-vector-valued-functions/a/multivariable-chain-rule-simple-version">Multivariable chain rule, simple version</a></li>
+                    <li><a href="http://www.bioinf.jku.at/publications/older/2604.pdf">Long Short-Term Memory</a></li>
+                    <li><a href="https://arxiv.org/pdf/1409.3215.pdf">Sequence to Sequence Learning with Neural Networks</a></li>                    
+
+                </ul>
+
+            </td>
+        </tr>     
+
+        <!-- ----------- -->
+
+        <tr class="light-mod2" id="lm_search">
+            <td>Feb 18</td>
+            <td>
+
+                <span style="color:black">Language Models (3): Search and Decoding</span> <!-- <a href="slides/1001_lm_search.pdf"><i class="fa-regular fa-file-pdf"></i></a>  --><br />
+                <span style="color:red">Project brainstorming due</span>
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/1904.09751">The Curious Case of Neural Text Degeneration</a></li>
+                    <li><a href="https://arxiv.org/abs/1601.00372">Mutual Information and Diverse Decoding Improve Neural Machine Translation</a></li>
+                    <li><a href="https://arxiv.org/pdf/1511.06732.pdf">Sequence Level Training with Recurrent Neural Networks</a></li>
+                    <li><a href="https://arxiv.org/abs/1607.07086">An Actor-Critic Algorithm for Sequence Prediction
+                    <li><a href="https://arxiv.org/abs/2203.02155">Training language models to follow instructions with human feedback</a></li>                    
+                </ul>
+            </td>
+        </tr>
+
+        
+        <tr class="light-mod7" id="noclass">
+            <td>Feb 20</td>
+            <td>
+                No Class <br />
+            </td>
+            <td>
+                <ul>
+                </ul>
+            </td>
+        </tr>
+
+        <!-- ----------- -->
+
+        <tr class="light-mod4" id="noclass">
+            <td>Feb 25</td>
+            <td>
+                <span style="color:black">Project Proposal Pitch (1)</span> <br />
+                <span style="color:red">HW3 due</span> <br />
+                <!-- <a href="https://docs.google.com/presentation/d/18BIdJC5kDPOZv0-WYB9Uh9BTeYDZ74PPJV24pUyLd30/edit?usp=sharing">Slides Deck for Group A</a><br/> -->
+
+            </td>
+            <!-- <td> 
+                Group A: 
+                <ul>
+                    <li>Visual Linguists (Koustav Banerjee, Hardik Gupta, Lin Xie) (mentor: Shirley, James)</li>
+                    <li>Scale is all you need (Weiwen Chen) (mentor: James, DK)</li>
+                    <li>LinguaTech (Yuxin Chen, Tong Liao, Jacob Sun) (mentor: James, Robert)</li>
+                    <li>Mosaic Pineapple (Nhi Dang, Harrison Wallander, Riana Hoagland) (mentor: Shirley, James)</li>
+                    <li>NextGenGenerative(Yi-ching Ho, Oran Frenstad, Weixuan Lin) (mentor: DK, Robert)</li>
+                    <li>Netflix, Lazy, Procrastinate (Charles Hart, Isaac Blumhoefer, Lane Versteeg) (DK, Robert)</li>
+                    <li>Rimika & Akansha (Rimika Dhara, Akansha Kamineni) (mentor: Shirley, Robert)</li>
+                    <li>Backpropagation Nation (Thomas Knickerbocker, Owen Ratgen, Yashas Acharya) (mentor: Shirley, DK)</li>
+                    <li>Tired Tokenizers (Nicholas Padilla, Jack LeGeault, Jacob Cadavez) (mentor: DK, James)</li>
+                </ul>                                
+            </td> -->
+        </tr>      
+        <tr class="light-mod4" id="lm_search">
+            <td>Feb 27</td>
+            <td>
+                <span style="color:black">Project Proposal Pitch (2)</span> <br />
+                <!-- <a href="https://docs.google.com/presentation/d/18v8PjHydZkkeHdkjjbv6GfSppTNfwuh-Av5kgBaii80/edit?usp=sharing">Slides Deck for Group B</a><br/> -->
+                <span style="color:red">Proposal Report due (Mar 2)</span>                 
+
+
+            </td>
+            <!-- <td> 
+                Group B: 
+                <ul>
+                    <li>NLP Nexus (Abishek Chaudhari, Guruvasanth Amirthapandian, Sureshkumar Shesha Sai Kumar Reddy Sadu) (mentor: DK, Robert)</li>
+                    <li>Auto "Encoder" Bots (Isaac Berlin, Kyle Anthes, Jerome Newhouse, Yasar Utku Alcalar) (mentor: Shirley, DK)</li>
+                    <li>GorillaChow (Elijah Carlson, Lucas Harrison) (mentor: DK, Shirley)</li>
+                    <li>Not ChatGPT (Ziyu Yuki Ge, Rajan Singh, Raj Surya, Cuong Ha) (mentor: James, Robert)</li>
+                    <li>RoboNLP (Joseph Lisk, Franklin Xavier, Anthony Albin Anbaiya, Jiawei He, Felix Su) (mentor: James, Robert)</li>
+                    <li>Phish and Chips (Ronit Motwani, Jeremiah Johnson, Jundong Zhang) (mentor: DK, Robert)</li>
+                    <li>No Name (This is not their name) (Philip Nguyen, William Walker, Emilie Bourget) (mentor: Shirley, James)</li>
+                    <li>ALP (Artificial Language Processing) (Alireza Sharbafchi, Mahdi Saberi) (mentor: DK, James)</li>
+                    <li>TransScribeAI (Anwesha Samaddar, Sharan Rajamanoharan, Ruizi Wang, Shizra Tariq) (mentor: Robert, Shirley)</li>
+                    <li>Sentimental (Abbas Booshehrian, Alex Besch, Mohit Yadav, Ruolei Zeng) (mentor: DK, James)</li>
+                </ul>                             
+            </td> -->
+        </tr>
+
+        <!-- ----------- -->
+
+        <tr class="light-mod2" id="lm_eval">
+            <td>Mar 4</td>
+            <td>
+                <span style="color:black">Language Models (4): Evaluation and Applications</span> <!-- <a href="slides/1003_lm_evaluation_application.pdf"><i class="fa-regular fa-file-pdf"></i></a>  --><br />
+                <span style="color:blue">HW4 out</span> <!-- <a href="hw/csci5541f24_HW4.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br/>
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/1409.0473">Neural Machine Translation by Jointly Learning to Align and Translate</a></li>
+                    <li><a href="https://huggingface.co/docs/transformers/en/perplexity">Perplexity of fixed-length models</a></li>
+                    <li><a href="https://aclanthology.org/P02-1040.pdf">BLEU: a Method for Automatic Evaluation of Machine Translation</a></li>
+                    <li><a href="https://aclanthology.org/W04-1013.pdf">ROUGE: A Package for Automatic Evaluation of Summaries</a></li>
+                </ul>
+            </td>
+        </tr>  
+
+        <tr class="light-mod3" id="lm_eval">
+            <td>Mar 6</td>
+            <td>
+                <span style="color:black">Contextualized Word Embeddings</span> <!-- <a href="slides/1015_contextualized_embeddings.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a></li>
+                    <li><a href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></li>
+                    <li><a href="https://arxiv.org/abs/2002.12327">A Primer in BERTology: What we know about how BERT works</a></li>   
+                </ul>  
+            </td>
+        </tr>
+        <tr class="light-mod3" id="contextual_embedding">
+            <td>Mar 18</td>
+            <td>
+                <span style="color:black">Transformers</span> <!-- <a href="slides/1017_transformers.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br /><br />
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">Attention is All you Need</a></li>
+                    <li><a href="https://jalammar.github.io/illustrated-transformer/">Tutorial on Illustrated Transformer</a></li>
+                    <li><a href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Language Models are Unsupervised Multitask Learners</a></li>
+                    <li><a href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a></li>
+                    <li><a href="https://arxiv.org/abs/1910.10683">Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer </a></li>
+
+                    
+                </ul>
+            </td>
+        </tr>
+
+        <!-- ----------- -->
+
+        <tr class="light-mod5" id="noclass">
+            <td>Mar 20</td>
+            <td>
+                <span style="color:black">Pretraining and Scaling Laws</span> <!-- <a href="slides/1022_pretraining_scaling_law.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+                <span style="color:red">HW4 due</span> <br />
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2001.08361">Scaling Laws for Neural Language Models</a></li>
+                    <li><a href="https://arxiv.org/abs/2108.07258">On the Opportunities and Risks of Foundation Models</a> </li>
+                    <li><a href="https://dl.acm.org/doi/10.1145/3442188.3445922">On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?</a> </li>
+                </ul>
+
+            </td>
+        </tr>
+        <tr class="light-mod5" id="noclass">
+            <td>Mar 25</td>
+            <td>
+
+                <span style="color:black">Prompting</span> <!-- <a href="slides/1024_prompting.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2201.11903">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a></li>
+                    <li><a href="https://arxiv.org/abs/2107.13586">Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing</a></li>
+                    <li><a href="https://aclanthology.org/2021.acl-long.353/">Prefix-Tuning: Optimizing Continuous Prompts for Generation</a></li>
+                </ul>
+            </td>
+        </tr>
+
+        <!-- ----------- -->
+
+        <tr class="light-mod5" id="pitch1">
+            <td>Mar 27</td>
+            <td>
+                <span style="color:black">Instructing and augmenting LLMs </span> <!-- <a href="slides/1029_instructing_augmenting_llms.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+                <span style="color:blue">HW5 out</span> <!-- <a href="hw/csci5541f24_HW5.pdf"><i class="fa-regular fa-file-pdf"></i></a> -->
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2203.02155">Training language models to follow instructions with human feedback</a></li>   
+                    <li><a href="https://arxiv.org/abs/2302.07842">Augmented Language Models: a Survey</a></li>   
+                    <li><a href="https://arxiv.org/abs/2302.04761">Toolformer: Language Models Can Teach Themselves to Use Tools</a></li>   
+                    <li><a href="https://arxiv.org/abs/2203.05115">Internet-augmented language models through few-shot prompting for open-domain question answering</a></li>
+
+
+                </ul>
+            </td>
+        </tr>
+        <tr class="light-mod5" id="pitch2">
+            <td>Apr 1</td>
+            <td>
+                <span style="color:black">LLMs as Agents <!-- (Zae) --></span> <!-- <a href="slides/1031_agents.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+                <span style="color:red">Project midterm office-hour due</span><br />
+
+            </td>
+            <td>
+                <li><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a></li>   
+                <li><a href="https://arxiv.org/abs/2308.00352">MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework</a></li>   
+                <li><a href="https://arxiv.org/abs/2304.03442">Generative Agents: Interactive Simulacra of Human Behavior</a></li>   
+                <li><a href="https://arxiv.org/abs/2307.13854">WebArena: A Realistic Web Environment for Building Autonomous Agents</a></li>            </td>
+        </tr>
+        <tr class="light-mod5" id="transformer1">
+            <td>Apr 3</td>
+            <td>
+                <span style="color:black">Ethics and Explainability <!-- (Shirley) --></span> <!-- <a href="slides/1105_safety.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://nickbostrom.com/ethics/artificial-intelligence.pdf">The Ethics of Artificial Intelligence</a> </li>
+                    <li><a href="https://arxiv.org/abs/1706.04599">On Calibration of Modern Neural Networks</a> </li>	
+                    <li><a href="https://papers.nips.cc/paper_files/paper/2016/hash/a486cd07e4ac3d270571622f4f316ec5-Abstract.html">Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</a></li>
+                    <li><a href="https://arxiv.org/pdf/2102.09690.pdf">Calibrate Before Use: Improving Few-Shot Performance of Language Models</a></li>
+                    <li><a href="https://arxiv.org/abs/1602.04938">"Why Should I Trust You?": Explaining the Predictions of Any Classifier</a></li>   
+                    <li><a href="https://link.springer.com/chapter/10.1007/11787006_1">Differential Privacy</a></li> 
+
+                    <li><a href="https://aiethics.princeton.edu/case-studies/case-study-pdfs/">Case Studies in Princeton Dialogues on AI and Ethics</a></li> 
+                </ul>
+            </td>          
+
+        </tr>
+
+        <tr class="light-mod5" id="transformer2">
+            <td>Apr 8</td>
+            <td>
+                <span style="color:black">All about Data and Annotation</span> <!-- <a href="slides/1107_data.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+                <span style="color:blue">HW6 out</span> <!-- <a href="hw/csci5541f24_HW6.pdf"><i class="fa-regular fa-file-pdf"></i></a> -->
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/1803.02324">Annotation Artifacts in Natural Language Inference Data </a> </li>
+                    <li><a href="https://arxiv.org/abs/2009.10795">Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics</a> </li>	
+                    <li><a href="https://arxiv.org/abs/2301.05036">Everyone's Voice Matters: Quantifying Annotation Disagreement Using Demographic Information</a></li>
+                    <li><a href="https://arxiv.org/abs/2303.15056">ChatGPT Outperforms Crowd-Workers for Text-Annotation Tasks</a></li>
+                </ul>
+            </td>
+        </tr>
+
+        <!-- ----------- -->
+
+
+        <tr class="light-mod5"  id="efficiency">
+            <td>Apr 10</td>
+            <td>
+                <span style="color:black">Efficient NLP</span> <!-- (James) --> <!-- <a href="slides/1114_efficiency.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+                <span style="color:red">HW5 due</span>
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/1510.00149">Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding</a> </li>
+                    <li><a href="https://arxiv.org/abs/2208.07339">LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale</a> </li>
+                    <li><a href="https://arxiv.org/abs/1701.06538">Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer</a> </li>
+                    <li><a href="https://arxiv.org/abs/2104.08691">The Power of Scale for Parameter-Efficient Prompt Tuning</a> </li>
+
+                </ul>
+            </td>
+        </tr>
+
+
+        <tr class="light-mod5"  id="data">
+            <td>Apr 15</td>
+            <td>
+                <span style="color:black">Alignment</span> <!-- (with Karin and Ryan) <a href="slides/1119_alignment.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+
+            </td>
+            <td>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2009.01325">Learning to summarize from human feedback </a> </li>
+                    <li><a href="https://arxiv.org/abs/1706.03741">Deep Reinforcement Learning from Human Preferences</a> </li>
+                    <li><a href="https://arxiv.org/abs/1707.06347">Proximal Policy Optimization Algorithms</a> </li>
+                    <li><a href="https://arxiv.org/abs/2305.18290">Direct preference optimization: Your language model is secretly a reward model</a> </li>
+                    <li><a href="https://arxiv.org/abs/2307.15217">Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback</a> </li>
+                    <li><a href="https://arxiv.org/abs/2402.14146">Dynamic Multi-Reward Weighting for Multi-Style Controllable Generation</a> </li>
+                    <li><a href="https://arxiv.org/abs/2309.17012">Benchmarking Cognitive Biases in Large Language Models as Evaluators</a> </li>
+
+                </ul>
+            </td>
+        </tr>        
+
+        <tr class="light-mod5"  id="data">
+            <td>Apr 17</td>
+            <td>
+                <span style="color:black">Multimodal NLP </span> <!-- (James) <a href="slides/1121_multimodal.pdf"><i class="fa-regular fa-file-pdf"></i></a> --><br />
+
+
+            </td>
+            <td>
+                <li><a href="https://arxiv.org/pdf/2212.04356">Robust Speech Recognition via Large-Scale Weak Supervision</a></li>
+                <li><a href="https://arxiv.org/pdf/2112.10752">High-Resolution Image Synthesis with Latent Diffusion Models</a></li>
+                <li><a href="https://arxiv.org/pdf/2103.00020">Learning Transferable Visual Models From Natural Language Supervision</a></li>
+                <li><a href="https://arxiv.org/pdf/2407.21783">The Llama 3 Herd of Models </a></li>
+
+            </td>
+        </tr>
+        <tr class="light-mod8" id="conclusion">
+            <td>Apr 22</td>
+            <td>
+                <span style="color:black">Reasoning</span> <!-- <a><i class="fa-regular fa-file-pdf"></i></a> --> <br />
+                <span style="color:red">HW6 due</span>
+
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="light-mod8" id="conclusion">
+            <td>Apr 24</td>
+            <td>
+                <span style="color:black">DeepMind Guest Lecturer</span> <!-- <a><i class="fa-regular fa-file-pdf"></i></a> --> <br />
+                <span style="color:black">Concluding Remark</span> <!-- <a><i class="fa-regular fa-file-pdf"></i></a>  -->
+
+            </td>
+            <td>
+            </td>
+        </tr>
+                
+        <tr class="light-mod4" id="1130">
+            <td>Apr 29</td>
+            <td>
+                <span style="color:black">Final Project Poster (1)</span><br />
+
+            </td>
+            <td>
+<!--                     <a>Posters for Group B</a><br/>
+                    <ul>
+                        <li>ALP (Artificial Language Processing), "<a>LLMs’ Robustness Against Prompt-Based Adversarial Attacks</a>"</li>
+                        <li>GorillaChow, "<a href="https://carl5411.github.io/">Semantic Music Search</a>"</li>
+                        <li>LLMs (Language Learning Mentors), "<a href="https://superstealthysheep.github.io/vocab-weighted-decoding/">Personalized Language Tutor/Partner</a>" </li>
+                        <li>NLP Nexus, "<a href="https://guruvasanth-sureshkumar.github.io/CSCI5541F24-NLP-Nexus.io/">FarmTalk: A Real Rime Platform for Plant Disease Identification and Managemen</a>t"</li>
+                        <li>Not ChatGPT, "<a>VocabEase: A Text Simplification and Summarization Pipeline</a>"</li>
+                        <li>Phish and Chips, "<a href="https://motwa011.github.io/CSCI-5541-Phish-And-Chips-TrustME/">Phish or Chips? Message Trustworthiness Detection</a>"</li>
+                        <li>RoboNLP, "<a>Kinova Teleoperation using LLM and VAE</a>"</li>
+                        <li>Sentimental, "<a>Scene Descriptions for the Visually Impaired</a>"</li>
+                        <li>TransScribeAI, "<a>ccurate Subtitle Generation in videos</a>"</li>
+                    </ul>    -->        
+            </td>
+        </tr>
+        <tr class="light-mod4" id="1205">
+            <td>May 1</td>
+            <td>
+                <span style="color:black">Final Project Poster (2)</span><br />
+                <span style="color:red">Project final report due (May 8)</span><br />
+
+            </td>
+            <td>
+<!--                     <a>Posters for Group A</a><br/>
+                    <ul>
+                        <li>Auto "Encoder" Bots, "<a href="https://isaac-berlin.github.io/LLM_Model_Bias/">Exploring Bias in Different Large Language Models and its Discrepancies to Human Judgment</a>"</li>
+                        <li>Backpropagation Nation, "<a>Automated School Planner</a>"
+                        <li>LinguaTech, "<a>Math Problem Generator： Using NLP and Computer Algebra System</a>"</li>
+                        <li>Mosaic Pineapple, "<a>Language Proficiency Detection and Generation</a>"</li>
+                        <li>NextGenGenerative, "<a >Chat Doctor Next</a>" </li>
+                        <li>Rimika & Akansha, "<a href="https://www.rimikadhara.com/StudentFeedbackAnalysis/">Improving Student Engagement Using NLP Techniques</a>"</li>
+                        <li>Scale is all you need, "<a>Multi-dimensional Byte Pair Encoding (MBPE)</a>"</li>
+                        <li>Tired Tokenizers, "<a href="https://padpy.github.io/csci5541-project-template/">Lairs and Language Models: Tabletop Gaming Narrative Assistant</a>"</li>
+                        <li>Visual Linguists, "<a href="https://csci5541-project-template.vercel.app/">Not all images are worth a thousand words!</a>"</li>
+                    </ul>   -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+    <div class="card" id="homework">
+        <h2>Homework Details (60%)</h2>
+        <p>
+            All questions regarding homework <b>MUST be communicated with the lead TA over Slack homework channels</b> (e.g., #hw1, #hw2) or during their office hours.
+            Homework 1, 2, 3, and 6 should be done individually, while homework 4 and 5 are team-based (maximum of 4 people).
+            Your team for homework 4 and 5 should be the same for the project team.
+
+            The use of outside resources (books, research papers, websites, etc.) or collaboration (students, professors, chatGPT, etc.) <b>must be explicitly acknowledged in your report</b>. Check out the <a href="#notes-to-students">notes</a> for academic intergrity.  
+        </p>
+        <p>
+            The deadline for all homework is by <span style="color:red"> midnight (11:59PM)</span> of the due date. 
+            Due to a tight schedule, there will be no deadline extension, but you can still use your late days.
+            For the delayed team homework, late days for every team member will be counted.
+            Check out the homework description <i class="fa-regular fa-file-pdf"></i> and link to canvas <i class="fa-solid fa-palette"></i> for submission:
+        </p>
+        <p>
+            Here are homework assignments with dues:
+            <ul>
+                <li>HW1: Building MLP-based text classifier with pytorch 
+                    (5 points, <u>Individual</u>, due: <span style="color:red">Feb 4</span>) <!-- (<a href="hw/csci5541f24_HW1.pdf"><i class="fa-regular fa-file-pdf"></i></a>, <a href="https://canvas.umn.edu/courses/460609/assignments/4123951"><i class="fa-solid fa-palette"></i></a>) --></li>
+                <li>HW2: Finetuning text classifier using HuggingFace 
+                    (10 points, <u>Individual</u>, due: <span style="color:red">Feb 11</span>) <!-- (<a href="hw/csci5541f24_HW2.pdf"><i class="fa-regular fa-file-pdf"></i></a>, <a href="https://canvas.umn.edu/courses/460609/assignments/4123968"><i class="fa-solid fa-palette"></i></a>) --></li>
+                <li>HW3: Authorship attribution using language models (LMs)
+                    (10 points, <u>Individual</u>, due: <span style="color:red">Feb 25</span>) <!-- (<a href="hw/csci5541f24_HW3.pdf"><i class="fa-regular fa-file-pdf"></i></a>, <a href="https://canvas.umn.edu/courses/460609/assignments/4123969"><i class="fa-solid fa-palette"></i></a>) --></li>
+                <li>HW4: Generating and evaluating text generated from pretrained LMs 
+                    (15 points, <u>Team</u>, due: <span style="color:red">Mar 20</span>) <!-- (<a href="hw/csci5541f24_HW4.pdf"><i class="fa-regular fa-file-pdf"></i></a>, <a href="https://canvas.umn.edu/courses/460609/assignments/4123971"><i class="fa-solid fa-palette"></i></a>) --></li>
+                <li>HW5: Prompting with large language models (LLMs)
+                    (15 points, <u>Team</u>, due: <span style="color:red">Apr 10</span>) <!-- (<a href="hw/csci5541f24_HW5.pdf"><i class="fa-regular fa-file-pdf"></i></a>, <a href="https://canvas.umn.edu/courses/460609/assignments/4123973"><i class="fa-solid fa-palette"></i></a>) --></li>
+                <li>HW6: Essay writing with ChatGPT 
+                    (5 points, <u>Individual</u>, due: <span style="color:red">Apr 22</span>) <!-- (<a href="hw/csci5541f24_HW6.pdf"><i class="fa-regular fa-file-pdf"></i></a>, <a href="https://canvas.umn.edu/courses/460609/assignments/4123974"><i class="fa-solid fa-palette"></i></a>) --></li>                    
+            </ul>
+        </p>
+    </div>
+
+
+
+
+<div class="card" id="project">
+    <h2 id="project-details">Project Details (30%)</h2>                
+    <p>
+        First, <b>carefully read the project description <a href="hw/csci5541f24_project_description.pdf"><i class="fa-regular fa-file-pdf"></i></a></b>, as most project information, dues, rubric, and answers to your questions are in the description document.
+        It is your responsbililty to miss any information regarding the project. 
+
+        Your team (maximum of 4 people) should submit their report, link to code (or a zipped code), and presentation slides/poster to Canvas before the deadline.  
+        Use official ACL style templates (<a href="https://www.overleaf.com/project/658f6ba9836accf9cbe5c1cd">Overleaf </a> or <a href="https://github.com/acl-org/acl-style-files">links</a>).   
+        Here are some dues you have to submit for project (note that some dues are during week days): 
+    </p>
+        <ul>
+            <li><b>Team formation</b> (1 point, <span style="color:red">due: Feb 6</span>) <!-- (<a href="https://canvas.umn.edu/courses/460609/assignments/4123988"><i class="fa-solid fa-palette"></i></a>) --></li>
+            <li><b>Project brainstorming</b> (1 point, <span style="color:red">due: Feb 18</span>) <!-- (<a href="https://canvas.umn.edu/courses/460609/assignments/4123991"><i class="fa-solid fa-palette"></i></a>) --></li>
+
+            <li><b>Proposal pitch</b> (3 points, due: <span style="color:red">Feb 25 and 27</span>) <!-- (Slides decks for <a href="https://docs.google.com/presentation/d/18BIdJC5kDPOZv0-WYB9Uh9BTeYDZ74PPJV24pUyLd30/edit?usp=sharing">Group A</a> and <a href="https://docs.google.com/presentation/d/18v8PjHydZkkeHdkjjbv6GfSppTNfwuh-Av5kgBaii80/edit?usp=sharing">Group B</a>) --></li>
+
+            <li><b>Proposal report</b> (5 points, due: <span style="color:red">Mar 2</span>) <!-- (<a href="https://canvas.umn.edu/courses/460609/assignments/4124036"><i class="fa-solid fa-palette"></i></a>) --></li>
+
+            <li name="projectmidterm"><b>Midterm office hour participation</b> (5 points, due: <span style="color:red">Apr 1</span>) <!-- (<a href="https://canvas.umn.edu/courses/460609/assignments/4124072"><i class="fa-solid fa-palette"></i></a>) --></li>
+
+            <li name="projectposter"><b>Poster presetnation</b> (5 points, due: <span style="color:red">Apr 29 and May 1</span>) <!-- (<a href="https://canvas.umn.edu/courses/460609/assignments/4124085"><i class="fa-solid fa-palette"></i></a>) --></li>
+
+            <li id="rubric_final_presentation"><b>Final report</b> (10 points, due: <span style="color:red">May 8</span>) <!-- (<a href="https://canvas.umn.edu/courses/460609/assignments/4124086"><i class="fa-solid fa-palette"></i></a>) (<a href="rubrick.html">evaluation rubric</a>) --></li>
+        </ul>
+    </p>   
+    <p>
+        You can find some selected project reports and posters from the previous years' NLP classes below. Some projects are extended and published top-tier workshop and conferences:
+        <ul>
+
+            <li>[CSCI 5541 S23] <i>Simulating Everyone's Voice: Exploring ChatGPTs Ability to Simulate Human Annotators</i> <a href="../../assets/past_projects/ELMosts_csci5541_s23_final.pdf"><i class="fa-regular fa-file-pdf"></i></a> <a href="../../assets/past_projects/ELMosts_csci5541_s23_poster.pdf"><i class="fa-regular fa-file-powerpoint" style="font-size:16px"></i></a></li>
+            <li>[CSCI 5541 S23] <i>Vision & Language-guided Generalized Object Grasping</i> <a href="../../assets/past_projects/StarkInc_csci5541_s23_final.pdf"><i class="fa-regular fa-file-pdf"></i></a> <a href="../../assets/past_projects/StarkInc_csci5541_s23_poster.pdf"><i class="fa-regular fa-file-powerpoint" style="font-size:16px"></i></a></li>
+            <li>[CSCI 5541 S23] <i>Generalizability of FLAN-T5 Model Using Composite Task Prompting</i> <a href="../../assets/past_projects/ironcodebenders_csci5541_s23_final.pdf"><i class="fa-regular fa-file-pdf"></i></a> <a href="../../assets/past_projects/ironcodebenders_csci5541_s23_poster.pdf"><i class="fa-regular fa-file-powerpoint" style="font-size:16px"></i></a></li>
+            <li>[CSCI 5541 S23] <i>Comparing the Effectiveness of Fine-tuning vs. One-Shot Learning on the Kidz Bopification Task</i> <a href="../../assets/past_projects/semanticsavants_csci5541_s23_final.pdf"><i class="fa-regular fa-file-pdf"></i></a> <a href="../../assets/past_projects/semanticsavants_csci5541_s23_poster.pdf"><i class="fa-regular fa-file-powerpoint" style="font-size:16px"></i></a></li>
+            <li>[CSCI 5980 F22] <i>Generating Controllable Long-dialogue with Coherence</i> <a href="../../assets/past_projects/NLP_project_final_report.pdf"><i class="fa-regular fa-file-pdf"></i></a> &rarr; <span style="color:red">Published in AAAI 2024 <a href="https://arxiv.org/abs/2312.16893"><i class="fa-regular fa-file-pdf"></i></a></span></li>
+            <li>[CSCI 8980 S22] <i>Understanding Narrative Transportation in Fantasy Fanfiction</i> <a href="../../assets/past_projects/Narrative_Transportation_Final.pdf"><i class="fa-regular fa-file-pdf"></i></a> &rarr; <span style="color:red">Published in Workshop on Narrative Understanding (WNU) @ACL 2023 <a href="https://arxiv.org/abs/2306.04043"><i class="fa-regular fa-file-pdf"></i></a></span></li>
+        </ul>
+    </p>   
+
+</div>
+
+
+
+
+
+    <div class="card" id="participation">
+        <h2 id="reading-details">Class Participation (10%)</h2>
+        <b>Your class participation is thoroughly evaluated</b>. 
+        Put your profile picture on Canvas and Slack so we can match you for the final evaluation. 
+        The following metrics will be used to grade your participation:
+        <ul>
+            <li>Participation and discussion in class</li>
+            <li>Discussion on Slack and during Office Hours for both instructor and TAs</li>
+            <li>Discussion and QA during the presentation of the project proposal and poster</li>
+        </ul>
+        We explicility count the number of your offline and online participation, and (min/max) normalize them at the end of the class.
+        <b>Your participation score will be zero if you haven't participated in class, Slack or other discussions.</b>.
+    </div>
+
+
+
+    <div class="card" id="prerequisites">
+        <h2>Prerequisites</h2>
+        <p>Required: CSCI 2041 <a href="https://www.coursicle.com/umn/courses/CSCI/2041/">Advanced Programming Principles</a></p>
+        <p>Recommended: CSCI 5521 <a href="https://onestop2.umn.edu/pcas/viewCatalogCourse.do?courseId=014090">Introduction to Machine Learning</a> or any other course that covers fundamental machine learning algorithms.</p>
+
+        <!-- CSCI 8980 <a href="https://dykang.github.io/classes/csci8980/Spring2021/">Introduction to NLP Research</a> or CSCI 5541 <a href="https://www.coursicle.com/umn/courses/CSCI/5541/">Natural Langauge Prorcessing</a>-->
+        <p>
+        Furthermore, this course assumes:
+        <ul>
+        <li>Good coding ability, corresponding to at least a third or fourth-year undergraduate CS major. Assignments will be in Python.</li>
+        <li>Background in basic probability, linear algebra, and calculus.</li>
+        </ul>
+        </p>
+    </div>
+
+
+
+    <div class="card" id="note">
+    <h2>Notes to students</h2>
+        <h4 id="overviews">Academic Integrity</h4>
+        <p> Assignments and project reports for the class must represent individual effort unless group work is explicitly allowed. Verbal collaboration on your assignments or class projects with your classmates and instructor is acceptable. But, everything you turn in must be your own work, and you must note the names of anyone you collaborated with on each problem and cite resources that you used to learn about the problem. If you have any doubts about whether a particular action may be construed as cheating, ask the instructor for clarification before you do it. Cheating in this course will result in a grade of F for course and the <a href="https://communitystandards.umn.edu/avoid-violations/avoiding-scholastic-dishonesty">University policies</a> will be followed.</p><br />
+        
+        <h4 id="overviews">Students with Disabilities</h4>
+        <p>If you have a disability for which you are or may be requesting an accommodation, you are encouraged to contact both your instructor and <a href="https://disability.umn.edu/">Disability Resources Center</a> (DRC).</p><br />
+        
+        <h4 id="overviews">COVID-19</h4>
+        <p>All students are expected to abide by campus policies regarding COVID-19 including masking and vaccination requirements. This is an in-person class with daily in-person activities, but we may consider a hybrid or online option. If you're feeling sick, stay at home and catch up with the course materials instead of coming to class!</p><br />
+    </div>
+
+
+
+    <div class="card" id="related">
+        <h2 id="related-classes--online-resources">Textbook / Related Classes / Online Resources</h2>
+        <h4 id="overviews">Book</h4>
+        Textbook is not required but the following books are primarily referred:
+        <ul>
+            <li>Jurafsky and Martin, Speech and Language Processing, 3rd edition [<a href="https://web.stanford.edu/~jurafsky/slp3/">online</a>]</a></li>
+            <li>Jacob Eisenstein. Natural Language Processing</li>
+        </ul>
+        <h4 id="overviews">Resources</h4>
+            Some course materials are inspired by the slides of Chris Manning at Stanford, Carlos Guestrin at Stanford, David Bamman at UC Berkeley, and Graham Neubig at CMU.
+    </div>
+    <footer style="font-weight: 300;">
+    <hr>
+    &#169; 2024 University of Minnesota
+</footer>
+
+
+</body>
+</html>
