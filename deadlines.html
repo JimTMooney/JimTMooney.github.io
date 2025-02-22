@@ -57,7 +57,7 @@
                 
                 events.forEach(({ event, days, hours }) => {
                     const listItem = document.createElement('li');
-                    listItem.innerHTML = `<span>${event}</span><span>${days} days, ${hours} hours remaining</span>`;
+                    listItem.innerHTML = `<span>${event}</span><span>${days} days</span>`;
                     eventList.appendChild(listItem);
                 });
             })
