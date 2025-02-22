@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upcoming Conferences</h1>
+    <ul id="eventList"></ul>
+    
+    <script>
+        fetch('events_list/all_events.csv')
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                const eventList = document.getElementById('eventList');
+                eventList.innerHTML = '';
+                
+                let events = [];
+                
+                lines.forEach(line => {
+                    const [event, dateString] = line.split(',');
+                    if (!event || !dateString) return;
+                    
+                    const trimmedDate = dateString.trim();
+                    const targetDate = new Date(Date.parse(trimmedDate));
+                    if (isNaN(targetDate)) return;
+                    
+                    const now = new Date();
+                    const timeDiff = targetDate.getTime() - now.getTime();
+                    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    
+                    if (days < -28) return; // Ignore events more than 28 days in the past
+                    
+                    events.push({ event: event.trim(), days, hours });
+                });
+                
+                // Sort events by time remaining
+                events.sort((a, b) => a.days - b.days);
+                
+                events.forEach(({ event, days, hours }) => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<span>${event}</span><span>${days} days, ${hours} hours remaining</span>`;
+                    eventList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error loading the CSV file:', error));
+    </script>
+</body>
+</html>
