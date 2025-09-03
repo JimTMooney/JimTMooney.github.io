@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+
+        <title>CSCI 5451, Introduction to Parallel Programming</title>
+        <link rel="icon" type="image/x-icon" href="assets/gpu.png">
+
+        <link rel="canonical" href="">
+        <!-- our project just needs Font Awesome Solid + Brands -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" type="text/css" href="css/main.css" >
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">CSCI 5451 Introduction to Parallel Programming, Fall 2025</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <div style="padding-top: 15px;" class="card">
+
+  <h1 id="csci-8980-06-intro-to-nlp">CSCI 5451, Introduction to Parallel Programming</h1>
+
+  <h3 style="font-weight: 300;">Fall 2025, Mondays and Wednesdays, 8:15am to 9:30am, Lind Hall 302
+</h3>
+
+  <hr />
+
+  <div class="row">
+<ul class="nav nav-pills">
+    <li>
+        <a href="#info">Course Information</a>
+    </li>
+    <li>
+        <a href="#schedule">Schedule</a>
+    </li>
+    <li>
+        <a href="#grading">Grading, Evaluation & Late Policy</a>
+    </li>
+    <li>
+        <a href="#homework">Homeworks</a>
+    </li>
+	<li>
+        <a href="#project">Projects</a>
+    </li>	
+    <li>
+        <a href="#prereqs">Prerequisite</a>
+    </li>		
+    <li>
+        <a href="#related">Resources</a>
+    </li>
+</ul>
+</div>
+
+</div>
+
+<p><a name="info"></a></p>
+<div class="card">
+
+  <h2 id="course-information">Course Information</h2>
+<br/>
+  <p>
+
+    <p>
+        This course is an introduction to parallel computing. It covers parallel architectures, parallel algorithms and their analysis. It will also introduce you to programming on parallel platforms. The main programming medium used for the labs will be in C. OpenMP, MPI, CUDA for NVIDIA Graphics Processing Units (GPUs), and (optionally) NCCL will also be covered. The course begins with a more theoretical focus [the complexity of parallel algorithms and their efficiency], then gradually shifts to a more practical focus on particular algorithms [sorting, graph algorithms, matrix algorithms] and their use in CUDA architectures.
+    </p>
+
+    <p>
+    Most course information (lectures, homework descriptions + due dates, code stubs presented during lecture, office hours, etc.) will be posted to the course website. It is your responsibility to track this website and attend lectures to see updates regarding homework assignments and their due dates+requirements.
+    We will use canvas only for homework submission and grading. 
+    
+    </p>
+
+
+
+    <dl class="dl-horizontal">
+        <dt>Instructors</dt>
+        <dd>
+            <br>
+            <div class="col-md-12">
+                <div class="row">
+                    <figure class="member_figure">
+                        <img class="member_image" src="https://minnesotanlp.github.io/img/members/james.jpeg" alt="James Mooney">
+                        <figcaption class="member_image_caption">
+                        <a href="https://jimtmooney.github.io/">James Mooney</a>
+                        <br>Instructor
+                        </figcaption>
+                    </figure>
+                    <figure class="member_figure">
+                        <img class="member_image" src="assets/imgs/wenjie.jpeg" alt="Wenjie Zhang">
+                        <figcaption class="member_image_caption">
+                        <a href="https://wenjie-zhang08.github.io/">Wenjie Zhang</a>
+                        <br>Graduate TA
+                        </figcaption>
+                    </figure>                      
+                </div>
+            </div>
+        </dd>
+        <dt>Class meets</dt>
+        <dd>Mondays and Wednesdays, 8:15am to 9:30am, Lind Hall 302</dd>
+
+        <dt>Office hours</dt> 
+        <dd>James: TBD </dd>
+        <dd>Wenjie: TBD</dd>
+
+        <dt>Class page</dt>
+        <dd><a href="https://jimtmooney.github.io/Courses/F25/index.html">https://jimtmooney.github.io/Courses/F25/index.html</a></dd>	
+        <dt>Canvas</dt>
+        <dd><a href="https://canvas.umn.edu/courses/518528">canvas.umn.edu/courses/518528</a></dd>
+    </dl>
+</div>
+
+
+
+
+<p><a name="grading"></a></p>
+<div class="card">
+    <h2 id="grading">Grading, Evaluation & Late Policy</h2>
+    <h4 id="late-policy-for-deliverables">Grading</h4>
+    <ul>
+        <li>75% <a href="#homework">Homework</a> 5 Individual Homeworks (15% each)</li>
+        <li>25% <a href="#project">Project</a> Team Project of 3-4 people</li>
+    </ul>
+
+    <h4 id="late-policy-for-deliverables">Evaluation</h4>
+
+    <p>
+    Your evaluation for this course will be based on 5 homeworks (15% each) and 1 final course project (25%).
+    </p>
+    <p>
+    Homeworks will be released every ~2 weeks beginning in the second week of September. Each release will consist of a pdf writeup of the assignment along with some small unit tests and a serial version of the program. Each homework submission will contain a zip file of the program itself along with a markdown file describing the solution. Homework submission will be due at 11:59 CST of the due date in Canvas.
+    </p>
+    <p>
+    Homework grading will consist of two portions. (1) An auto-graded portion determining that (a) the program compiles (b) the program passes a series of unit tests corresponding to the given problem and (c) the program achieves significant speedups over a serial version of the program (what constitutes significant will be stated in the homework pdf). (2) A human graded portion to determine that the program uses the intended frameworks/methods in the homework description (i.e. APIs are not used to make the work easier, specific CUDA libraries/strategies which we want you to use are used, etc.), and to ensure that the writeup aligns with the program itself and displays sufficient knowledge of the methods used.
+    </p>
+    <p>
+    We will run the autograding portion of the homework grading at 11:59pm on each of the three days before the submission deadline. If you submit your program earlier, this will give you the opportunity to see what your autograded score would be and to debug accordingly.
+    </p>
+    <p>
+    For the project, you will work in groups of 3-4 in order to parallelize some real world programs. For this, think early about who you would like to work with and start thinking about projects you would like to parallelize. This project should represent a program which is difficult to parallelize or will have high impact when parallelized (i.e. an open source project which has slow, serial parts). I will be discussing this project on a regular basis in lecture regarding updates and will be meeting with each group individually 1-2 times during the semester to ensure that the project is on track.
+    </p>
+    <p>
+    The grades will be assigned according to the following scale, where T is the total score (out of 100) you have achieved in this course.
+    </p>
+    <table border="1">
+    <tbody>
+        <tr>
+        <td>A : 100 ≥ T ≥ 94</td>
+        <td>A- : 94 > T ≥ 88</td>
+        <td>B+ : 88 > T ≥ 82</td>
+        </tr>
+        <tr>
+        <td>B : 82 > T ≥ 77</td>
+        <td>B- : 77 > T ≥ 72</td>
+        <td>C+ : 72 > T ≥ 65</td>
+        </tr>
+        <tr>
+        <td>C : 65 > T ≥ 60</td>
+        <td>C- : 60 > T ≥ 55</td>
+        <td>D+ : 55 > T ≥ 50</td>
+        </tr>
+        <tr>
+        <td>D : 50 > T ≥ 40</td>
+        <td>F : 40 > T</td>
+        <td></td>
+        </tr>
+    </tbody>
+    </table>
+    <h4 id="late-policy-for-deliverables">Late policy for deliverables</h4>
+    <p>
+    For the homeworks, a late penalty of 2.5% will be incurred for every 3 hours the assignment is past due. This more fractional policy is used as we know many students will likely be submitting their work the night of. This will still incur a penalty but it will be more minor. A full day late will result in a 20% penalty, 2 days 40%, etc. Refer to the below equation for determining the exact percentage deducted from your final grade based on how late your assignment is.
+    </p>
+
+    <p>
+    Percentage Deducted = Math.ceil(# hours since due time / 3) * 2.5
+    </p>
+
+    <p>
+    Late projects will not be accepted for grades unless under extenuating circumstances made clear in advance.
+    </p>
+</div>
+
+
+
+<p><a name="schedule"></a></p>
+<div class="card">
+
+  <h2 id="schedule">Schedule</h2>
+<br/>
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr class="table-active">
+            <td style="width: 7%; text-align: center">Date</td>
+            <td style="width: 35%;">Lectures and Dues</td>
+            <td style="width: 55%;">Readings 
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr class="light-mod0"  id="overview">
+            <td>Jan 21</td>
+            <td>
+                <span style="color:black">Class Overview</span> <a href="slides/0903_overview.pdf"><i class="fa-regular fa-file-pdf"></i></a>&nbsp;<a href="https://docs.google.com/presentation/d/1gq6fslAmVZPs9e-SL1bq0mMiPgKvZKO2F8OftfkI5ws/edit?usp=sharing"><i class="fa-regular fa-file-powerpoint"></i></a><br />
+
+            </td>
+            <td>
+            </td>
+        </tr>
+       
+    </tbody>
+</table>
+
+</div>
+
+    <div class="card" id="homework">
+        <h2>Homework Assignments</h2>
+        <p>
+            This section contains the homework assignments for this course. If assignments below have no links or descriptions, they have not yet been released.
+        </p>
+        <p>
+            Here are homework assignments with dues:
+            <ul>
+                <li>
+                    HW1
+                </li>         
+                <li>
+                    HW2
+                </li>
+                <li>
+                    HW3
+                </li>         
+                <li>
+                    HW4
+                </li>
+                <li>
+                    HW5
+                </li>         
+            </ul>
+        </p>
+    </div>
+
+
+
+
+<div class="card" id="project">
+    <h2 id="project-details">Project Details</h2>                
+    <p> Monitor this section in the coming weeks. More details on Project Team Formation and eventual projects will be forthcoming.</p>
+
+</div>
+
+
+
+    <div class="card" id="prerequisites">
+        <h2>Prerequisites</h2>
+
+        <p>
+        This course assumes that you will be comfortable with C syntax, debugging, and algorithms. <b>This is not an introductory course in programming</b>, but in applications of programming to the parallel setting. We assume that you will be able to incorporate new frameworks and their core ideas quickly. We will not be teaching the basics of C programming before diving into the work. Nor will we be focusing on the exact workings of some of the algorithms.
+        </p>
+    </div>
+
+
+
+    <div class="card" id="related">
+        <h2 id="related-classes--online-resources">Textbook / Related Classes / Online Resources</h2>
+        <h4 id="overviews">Book</h4>
+        Textbook is not required but the following books are primarily referred:
+        <ul>
+            <li>“Introduction to Parallel Computing, 2nd Edition” by V. Kumar, A. Grama, A. Gupta, and G. Karypis (2003) – ISBN-13: 978-0201648652; ISBN-10: 0201648652</li>
+            <li>“Programming Massively Parallel Processors, Fourth Edition: A Hands-on Approach” by David B. Kirk and Wen-mei W. Hwu. (2022) – ISBN-13: 978-0323912310</li>
+        </ul>
+    </div>
+    <footer style="font-weight: 300;">
+    <hr>
+    &#169; 2025 University of Minnesota
+</footer>
+
+
+</body>
+</html>
