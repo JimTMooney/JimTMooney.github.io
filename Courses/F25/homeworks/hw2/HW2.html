@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Markdown Viewer</title>
+
+  <!-- 1️⃣ GitHub-style markdown CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
+
+  <!-- 2️⃣ Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* Optional: center and pad content */
+    body {
+      display: flex;
+      justify-content: center;
+      background: #f6f8fa;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 900px;
+      padding: 45px;
+      background: white;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 3️⃣ Container for your Markdown -->
+  <div id="content" class="markdown-body"></div>
+
+  <!-- 4️⃣ Script that fetches and renders your .md file -->
+  <script>
+    fetch('HW2.md')
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById('content').innerHTML = marked.parse(text);
+      });
+  </script>
+</body>
+</html>
