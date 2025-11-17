@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>HW3</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css" />
+</head>
+<body>
+<h1 id="hw3-sparse-block-cyclic-cannons-algorithm">HW3: Sparse
+Block-Cyclic Cannon’s Algorithm</h1>
+<h2 id="overview">Overview</h2>
+<p>This directory contains the materials for completing HW3, where you
+will extend the previous implementation of Cannon’s algorithm to a
+block-cyclic sparse version of Cannon’s. The provided files and tests
+will help you verify correctness and performance as you generalize your
+implementation.</p>
+<h2 id="provided-materials">1. Provided Materials</h2>
+<p>You are given the following files: - <code>README_STUDENT.md</code> –
+This file. Contains the necessary information to complete this
+assignment. - <code>variable_cannon.c</code> – A working implementation
+to run cannon’s algorithm in non-cyclic fashion without any sparsity. -
+<code>tests/</code> – Directory containing input/output files for all
+test cases (there are no hidden tests for this assignment). Test
+<code>i</code> may be found at <code>tests/test_{i}</code>. A single
+test directory contains an input file <code>in.txt</code> and output
+file <code>out.txt</code>. The input file contains both matrices
+<code>A</code> and <code>B</code>. The output file contains the expected
+matrix <code>C</code>. - <code>autograder.sh</code> – Bash script to
+compile and test your code across all tests we will consider. This
+contains the exact set of commands we will run for each of the
+<code>tests</code>. - <code>autograde_runner.py</code> – Script to
+compute your final score. This reads in the log outputs of
+<code>autograder.sh</code> to determine how many speedup/unit tests your
+program passes.</p>
+<h2 id="your-task">2. Your Task</h2>
+<p>Your job is to update the version of MPI Cannon’s algorithm present
+inside of <code>variable_cannon.c</code> in a new file which implements
+the same algorithm - but introduces sparsity &amp; adds block-cyclic
+output distribution. See below for a high level view of what must be
+programmed. Your eventual result should pass all tests present inside of
+<code>autograder.sh</code>.</p>
+<ol type="1">
+<li><p>You must change the current implementation of cannon’s algorithm
+to be block-cyclic. The current implementation decomposes the output
+matrix (C = AB) using a 2-d decomposition of sqrt(p) x sqrt(p) blocks of
+C, where <code>p</code> is the number of processes. The updated
+implementation should instead decompose C into (k x sqrt(p)) x (k x
+sqrt(p)) blocks of C, where <code>k</code> is the number of cycles (you
+can assume that <code>p</code> is a square number). A given process will
+then be responsible for <code>k^2</code> blocks of C. As an example, if
+k=2, then each process should have one block in the upper left quadrant,
+one in upper right, one in the lower right quadrant, and one in the
+lower left quadrant.</p></li>
+<li><p>In order to ensure that the distributions of elements in A and B
+are properly sized within this block-cyclic configuration, be sure to
+update the padding such that the number of rows/cols in both matrices is
+divisible by (k x sqrt(p)). The padding should be distributed among
+blocks so that the last ranks in each row/column do not get stuck with a
+large number of 0s.</p></li>
+<li><p>You must not sparsify the blocks before distributing from the
+process with rank 0. In other words, the general logic of distribution
+of blocks of A,B to the other processes should be largely unchanged from
+the current implementation such that even 0’s are still sent - you will
+just have to account for the block-cyclic nature of the
+distribution.</p></li>
+<li><p>Both A and B should be loaded row-wise.</p></li>
+<li><p>You should not use routing to separate implementations for
+special cases - you should have one implementation of this algorithm
+which is general enough across potential inputs.</p></li>
+<li><p>For sparsity, A will have some rows which are all 0. B will have
+some columns which are all 0.</p></li>
+<li><p>Each process, after receiving their k^2 blocks of A and k^2
+blocks of B from rank 0, should immediately update the representations
+of these blocks so that they only contain non-zero information. To do
+this, you will only need to store the nonzero data, plus the list of
+whichever rows (A) or columns (B) are nonzero. As an example, if we use
+a 4 process cannon’s with 1 cycle on Test 0, then process 0 would have
+the upper left corner of A. In this case, this corresponds to [[0, 0],
+[-7, -3]]. To store this, you would only need to store [[-7, -3]] and
+[1], where [1] corresponds the row which has non-zero entries. In total,
+a given process will have to store <code>k</code> lists of 0 rows in A,
+and <code>k</code> lists of 0 cols in B.</p></li>
+<li><p>In order to actually perform Cannon’s algorithm (corresponding to
+<code>MatrixMatrixMultiply_rect</code> in the current implementation),
+you should only communicate the sparse representations of the data. Note
+that you do not need to communicate which rows are sparse (A) or which
+columns (B) as each process will get this information when sparsifying
+the matrices. In other words, each step of Cannon’s will only require
+that you send non-zero data - the block dimensions and nonzero rows/cols
+are fixed on each process.</p></li>
+<li><p>To perform the computation, you must skip any row/column
+computation which has zero rows in A or zero columns in B. If you have
+performed the sparsification well, then the computation should look
+quite similar to the triply nested matrix computation in the original
+file.</p></li>
+<li><p>For each of the k^2 blocks that a given process must compute of
+C, the output dimensions will be known after sparsifying the distributed
+data. You can use this to allocate memory only one time.</p></li>
+<li><p>In the <code>MatrixMatrixMultiply_rect</code> function of the
+original implementation of this algorithm, there are a total of
+<code>2 * sqrt(p)</code> communication steps required to perform
+computation (sqrt(p) for A, sqrt(p) for B) - these may be found inside
+of the for loop of this function. This number of communications should
+be maintained in your implementation. In other words, you should not
+have an inner for loop to separately communicate each of the
+<code>k</code> blocks of A and <code>k</code> blocks of B - these should
+all be communicated at one time.</p></li>
+<li><p>Your implementation should then see speedups by skipping over
+computations involving 0s (sparsity), and ensuring a better load
+balancing (block-cyclic).</p></li>
+</ol>
+<p>Once complete, you should pass all the unit and speedup tests inside
+of <code>autograder.sh</code>.</p>
+<p>As a tip, try working with 4x4, 4x8, 8x4, 8x8 matrices using 2
+cycles, sparsity, and 4 processes by hand (Tests 0 and 1 are good
+starting points for this). Write out which processes should have which
+elements, then walk through what should happen on each iteration of
+Cannons (there will only be two iterations after the initial skew step).
+After you have a good grasp of this, work through the program
+itself.</p>
+<h2 id="getting-started">3. Getting Started</h2>
+<ul>
+<li><p><strong>Ensure that you have downloaded the zipfile for this
+assignment from the course website</strong></p></li>
+<li><p><strong>Create your implementation:</strong><br />
+You will edit <code>sparse_cyclic_cannon.c</code> for your
+solution.</p></li>
+<li><p><strong>Create a hostfile:</strong><br />
+Make a file named <code>hosts.txt</code> listing the node you will use
+(i.e., your assigned plate node). The number of slots you should use in
+this file is 64.</p></li>
+</ul>
+<h2 id="running-a-single-test">4. Running a Single Test</h2>
+<p>To run a specific test manually (in this case, 4 processes on Test 0
+with 2 cycles):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mpicc</span> <span class="at">-O3</span> <span class="at">-std</span><span class="op">=</span>c99 <span class="at">-o</span> build/sparse_cyclic_cannon sparse_cyclic_cannon.c <span class="at">-lm</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-np</span> 4 <span class="at">--hostfile</span> hosts.txt <span class="at">--map-by</span> node build/sparse_cyclic_cannon/test_0/in.txt build/out_test0_np4.txt 2</span></code></pre></div>
+<p>If successful, this will output a print statement to the shell
+like:</p>
+<pre><code>Time for matrix multiplication: %.6f seconds\n</code></pre>
+<p>where <code>%.6f</code> is replaced by a floating point number.
+Additionally, this will create a file named
+<code>build/out_test0_np4.txt</code>. The contents of this should match
+that found in <code>tests/test_0/out.txt</code>.</p>
+<p>This example uses Test 0. Replace the input file
+(<code>tests/test_0/in.txt</code>) and output file
+(<code>build/out_test0_np4.txt</code>) as needed to check the
+performance of other tests.</p>
+<h2 id="running-the-full-autograder-script">5. Running the Full
+Autograder Script</h2>
+<p>To run all tests and see pass/fail results:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./autograder.sh</span></span></code></pre></div>
+<h2 id="running-the-full-autograde-runner-for-a-score">6. Running the
+Full Autograde Runner (for a Score)</h2>
+<p>To run the autograder and receive a scored grade in addition to the
+logs:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> autograde_runner.py</span></code></pre></div>
+<h2 id="whats-the-difference">7. What’s the Difference?</h2>
+<ul>
+<li><strong>autograder.sh:</strong><br />
+Compiles your code and runs all tests, showing which tests pass or
+fail.</li>
+<li><strong>autograde_runner.py:</strong><br />
+Runs the autograder script and computes your overall score from
+<code>autograder.sh</code>, as will be reported for grading by the
+autograder. This is what we will use for getting your canvas
+grades.</li>
+</ul>
+<h2 id="test-descriptions">8. Test Descriptions</h2>
+<p>The tests are grouped as follows (see <code>autograder.sh</code> for
+details):</p>
+<ul>
+<li><strong>Small matrix tests (0-3)</strong><br />
+Small matrices with varying dimensions &amp; levels of sparsity. These
+are not run for timings, but instead for correctness</li>
+<li><strong>Speedup Test (4)</strong><br />
+A single input test is tested against various number of processes.</li>
+</ul>
+<p>Each test uses input files in <code>tests/test_X/in.txt</code> and
+compares your output to <code>tests/test_X/out.txt</code>.</p>
+<h2 id="autograder-schedule">9. Autograder Schedule</h2>
+<p>The autograder will be run approximately every 24 hours, starting
+from <strong>Monday, November 17</strong>. Make sure your code is ready
+and passes all tests before the deadline. To submit go to the <a
+href="https://canvas.umn.edu/courses/518528/assignments/4943253">Canvas
+Link</a>.</p>
+<h2 id="grading">10.Grading</h2>
+<p>Your final score will be a composition of an autograded portion &amp;
+a manually graded portion. The autograded portion will be worth 12
+points:</p>
+<ul>
+<li><strong>Autograder Total Score:</strong> 12 points.</li>
+<li><strong>Autograder Deductions:</strong>
+<ul>
+<li>For each test that results in a timeout or runtime error:<br />
+<strong>−(8 / 37) points</strong> per failure (where 37 is the total
+number of tests).</li>
+<li>For each unit test that fails (incorrect output):<br />
+<strong>−(7 / 37) points</strong> per failure.</li>
+<li>For each speedup test that fails (test 4):<br />
+<strong>−(4 / 5) points</strong> per failure (where 5 is the number of
+speedup checks).</li>
+</ul></li>
+<li><strong>Autograder Minimum Score:</strong> Your score will not go
+below 0.</li>
+<li><strong>Notes:</strong>
+<ul>
+<li>Compilation failure results in a score of 0.</li>
+<li>The autograder will run all tests and apply penalties as described
+above.</li>
+<li>Your autograder score on canvas is reported out of 12.</li>
+<li>The autograder will run every ~24 hours.</li>
+</ul></li>
+</ul>
+<p>The manual portion will be worth 3 points. This portion will result
+from your report pdf and should contain only the following (i.e. the
+report does not need to go into the details of your implementation, just
+respond to the below points):</p>
+<ul>
+<li><strong>Manual Total Score:</strong> 3 points.</li>
+<li><strong>Manual Grading Rubric:</strong>
+<ul>
+<li><strong>(.75 points)</strong> Only 2*sqrt(p) communications are used
+in the for loop of your implementation of Cannon’s Block-cyclic
+Sparse.</li>
+<li><strong>(.75 points)</strong> Provide the empirical Speedup &amp;
+Efficiency metrics when running your program on Test 4 with 2 cycles at
+np={4,9,16,25}. To calculate the serial time, use the original
+<code>variable_cannon.c</code> implementation with 1 process as a
+benchmark.</li>
+<li><strong>(.75 points)</strong> As you vary the number of cycles at
+{1, 2, 3, 4}, what happens to your speedups on Test 4 (for this, you can
+fix np to be 4)? Give a reason around why the results you see
+occur.</li>
+<li><strong>(.75 points)</strong> Why do we need to use both
+block-cyclic and sparse representations? Why is neither alone sufficient
+to achieve the necessary speedups we are after?</li>
+</ul></li>
+</ul>
+<h2 id="submission">11. Submission</h2>
+<p>This assignment requires the submission of two files to <a
+href="https://canvas.umn.edu/courses/518528/assignments/4943253">Canvas</a>
+by <strong>Nov 28, 11:59PM</strong>:</p>
+<ul>
+<li><code>sparse_cyclic_cannon.c</code> –&gt; Your implementation of a
+sparse, cyclic version of Cannon’s algorithm.</li>
+<li><code>report.pdf</code> –&gt; A report containing your answers to
+the questions of the manual grading section above.</li>
+</ul>
+</body>
+</html>
