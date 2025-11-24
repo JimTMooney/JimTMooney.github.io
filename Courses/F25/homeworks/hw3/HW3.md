@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains the materials for completing HW3, where you will extend the previous implementation of Cannon's algorithm to a block-cyclic sparse version of Cannon's. The provided files and tests will help you verify correctness and performance as you generalize your implementation.
+[This directory](https://jimtmooney.github.io/Courses/F25/homeworks/hw3/HW3.zip) contains the materials for completing HW3, where you will extend the previous implementation of Cannon's algorithm to a block-cyclic sparse version of Cannon's. The provided files and tests will help you verify correctness and performance as you generalize your implementation. You should run your tests on your assigned Plate machine.
 
 
 
