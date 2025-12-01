@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>HW4</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css" />
+</head>
+<body>
+<h1
+id="csci-5451-homework-4-profiling-gpu-convolution-kernels"><strong>CSCI
+5451 — Homework 4: Profiling GPU Convolution Kernels</strong></h1>
+<p><strong>Due Date:</strong> <strong>December 7, 2025</strong><br />
+<strong>Canvas Submission Link:</strong>
+https://canvas.umn.edu/courses/518528/assignments/4943254<br />
+<strong>Total Points:</strong> 15</p>
+<hr />
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>In this assignment, you will analyze and profile a set of CUDA GPU
+kernels implementing a 2-D convolution. The provided code contains
+<strong>four different convolution kernels</strong>, each using a
+different optimization strategy. You will:</p>
+<ul>
+<li>Benchmark these kernels on <strong>Google Colab GPUs</strong>,<br />
+</li>
+<li>Explore how block sizes and coarsening factors change
+performance,<br />
+</li>
+<li>Interpret your results,<br />
+</li>
+<li>And compare performance across GPU architectures (T4 vs A100).</li>
+</ul>
+<p>You <strong>must understand the C code in detail</strong>, so read it
+carefully before starting.</p>
+<hr />
+<h1 id="using-google-colab-for-this-homework"><strong>Using Google Colab
+for This Homework</strong></h1>
+<p>Our normal GPU servers are experiencing configuration issues, so this
+assignment <strong>must be completed in Google Colab</strong>.</p>
+<h3 id="to-use-colab"><strong>To use Colab:</strong></h3>
+<ol type="1">
+<li>Go to <strong>https://colab.research.google.com/</strong></li>
+<li>Create a new notebook</li>
+<li>Go to: <strong>Runtime → Change runtime type</strong></li>
+<li>Set:
+<ul>
+<li><strong>Hardware Accelerator: GPU</strong></li>
+<li>For this assignment, we will make use of both A100 and T4 GPUs</li>
+</ul></li>
+<li>Upload the following file into the notebook using the provided
+starter cells:
+<ul>
+<li><code>convolution.cu</code> (the provided source file)</li>
+</ul></li>
+</ol>
+<p>Your <code>.ipynb</code> <strong>must include the following three
+cells only</strong>, with no modification except switching between T4
+and A100 lines as instructed:</p>
+<hr />
+<h3 id="cell-1-upload-the-cuda-program"><strong>Cell 1: Upload the CUDA
+Program</strong></h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()</span></code></pre></div>
+<hr />
+<h3 id="cell-2-compile"><strong>Cell 2: Compile</strong></h3>
+<p>For <strong>T4 (sm_75)</strong>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>nvcc <span class="op">-</span>Xptxas <span class="op">-</span>O3 <span class="op">-</span>O3 <span class="op">-</span>arch<span class="op">=</span>sm_75 convolution.cu <span class="op">-</span>o convolution_hw</span></code></pre></div>
+<p>For <strong>A100 (sm_80)</strong>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>nvcc <span class="op">-</span>Xptxas <span class="op">-</span>O3 <span class="op">-</span>O3 <span class="op">-</span>arch<span class="op">=</span>sm_80 convolution.cu <span class="op">-</span>o convolution_hw</span></code></pre></div>
+<hr />
+<h3 id="cell-3-run"><strong>Cell 3: Run</strong></h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>.<span class="op">/</span>convolution_hw</span></code></pre></div>
+<hr />
+<h1 id="assignment-tasks"><strong>Assignment Tasks</strong></h1>
+<h2 id="block-size-parameter-sweep-3-points"><strong>(1) Block-size
+parameter sweep (3 points)</strong></h2>
+<p>For each of the four kernels:</p>
+<ul>
+<li><p>Vary <code>dim3 block(x, y)</code> across a reasonable grid of
+values.<br />
+Examples (you may choose your own):</p>
+<pre><code>x ∈ {8, 16, 32}  
+y ∈ {8, 16, 32}</code></pre></li>
+<li><p>Record the runtime for each <code>(x, y)</code> pair.</p></li>
+<li><p>Produce a <strong>2-D table per kernel</strong> showing speeds
+for each pairings for each kernel.</p></li>
+</ul>
+<hr />
+<h2
+id="vary-the-thread-coarsening-factor-for-function_d-3-points"><strong>(2)
+Vary the thread-coarsening factor for <code>function_d</code> (3
+points)</strong></h2>
+<p><code>function_d</code> uses thread coarsening such that more than
+one output is computed per thread:</p>
+<p>You must test the following coarsening pairs
+<code>(OPT_COARSEN_Y, OPT_COARSEN_X)</code>:</p>
+<pre><code>(1,1), (2,1), (4,1), (8,1),
+(1,2), (2,2), (4,2), (8,2),
+(1,4), (2,4), (4,4), (8,4),
+(1,8), (2,8), (4,8), (8,8)</code></pre>
+<p>For each pair:</p>
+<ul>
+<li>Recompile with the new macros using `dim3 block(16, 16).</li>
+<li>If you experience errors, you should give a detailed accounting as
+to why the error occurs.</li>
+<li>Produce a table of speeds for each of these configurations of
+coarsening factors when fixing the threadblock size to be</li>
+</ul>
+<hr />
+<h2 id="explain-the-performance-ordering-5-points"><strong>(3) Explain
+the performance ordering (5 points)</strong></h2>
+<p>Determine the order of kernels in terms of which is fastest</p>
+<p>Provide a <strong>thorough explanation</strong> of why the kernels
+perform in the order that they do. This should be grounded in the
+hardware itself as well as constraints imposed by the software.</p>
+<hr />
+<h2 id="fastest-kernel-comparison-on-t4-vs-a100-2-points"><strong>(4)
+Fastest kernel comparison on T4 vs A100 (2 points)</strong></h2>
+<p>After completing your exploration:</p>
+<ol type="1">
+<li>Select the <strong>fastest observed configuration</strong> for your
+fastest kernel.<br />
+</li>
+<li>Run that configuration:
+<ul>
+<li>on an <strong>A100</strong></li>
+<li>and on a <strong>T4</strong></li>
+</ul></li>
+<li>Report both runtimes.</li>
+</ol>
+<p>Then give a <strong>hardware-based explanation</strong> of why one
+GPU is faster.</p>
+<hr />
+<h2 id="short-questions-2-points-0.5-each"><strong>(5) Short Questions
+(2 points, 0.5 each)</strong></h2>
+<h3 id="a"><strong>(a)</strong></h3>
+<p><strong>What is the theoretical peak arithmetic intensity of this
+program?</strong><br />
+Compute FLOPs per byte of matrix data loaded (you may ignore the
+convolution filter’s memory footprint).</p>
+<hr />
+<h3 id="b"><strong>(b)</strong></h3>
+<p><strong>Why does the benchmarking code use a warmup
+phase?</strong><br />
+Look up “GPU warmup” or “kernel warmup” in benchmarking practice.</p>
+<hr />
+<h3 id="c"><strong>(c)</strong></h3>
+<p><strong>What does the <code>-arch</code> flag control when compiling
+the CUDA program?</strong><br />
+Also:<br />
+<strong>Why do we use <code>-O3</code> optimization flags?</strong></p>
+<hr />
+<h3 id="d"><strong>(d)</strong></h3>
+<p><strong>What are some additional ways you could further speed up this
+program?</strong></p>
+<hr />
+<h1 id="submission-instructions"><strong>Submission
+Instructions</strong></h1>
+<p>You must submit <strong>one file</strong> to Canvas:</p>
+<h3 id="a-pdf-containing"><strong>(1) A PDF containing:</strong></h3>
+<ul>
+<li>All 2-D tables (from Parts 1 &amp; 2)</li>
+<li>Explanations (Part 3)</li>
+<li>GPU comparison results (Part 4)</li>
+<li>Answers to the short questions (Part 5)</li>
+</ul>
+<p><strong>Canvas link:</strong><br />
+https://canvas.umn.edu/courses/518528/assignments/4943254</p>
+<hr />
+<h1 id="provided-files"><strong>Provided Files</strong></h1>
+<p>You will receive a ZIP archive containing:</p>
+<ul>
+<li><code>HW4.md</code> (this file)<br />
+</li>
+<li><code>convolution.cu</code> (the GPU program you must analyze)<br />
+</li>
+<li><code>profile_convolution.ipynb</code> (with the three required
+Colab cells - detailed above)</li>
+</ul>
+<hr />
+</body>
+</html>
