@@ -9,7 +9,7 @@
 
 In this assignment, you will analyze and profile a set of CUDA GPU kernels implementing a 2-D convolution. The provided code contains **four different convolution kernels**, each using a different optimization strategy. You will:
 
-- Benchmark these kernels on **Google Colab GPUs**,  
+- Benchmark these kernels on **Google Colab GPUs** or on the provided cuda lab machines (csel-cuda-0x.cselabs.umn.edu)
 - Explore how block sizes and coarsening factors change performance,  
 - Interpret your results,  
 - And compare performance across GPU architectures (T4 vs A100).
@@ -20,7 +20,22 @@ You **must understand the C code in detail**, so read it carefully before starti
 
 # **Using Google Colab for This Homework**
 
-Our normal GPU servers are experiencing configuration issues, so this assignment **must be completed in Google Colab**.  
+This assignment **must be completed in Google Colab** or on the **provided university lab machines** (csel-cuda-0x.cselabs.umn.edu).
+
+### **To use the lab machines**
+The following cuda machines (each containing a single T4 GPU) are now working and are available for use
+
+ - csel-cuda-01.cselabs.umn.edu
+ - csel-cuda-03.cselabs.umn.edu
+ - csel-cuda-04.cselabs.umn.edu
+ - csel-cuda-05.cselabs.umn.edu
+
+Note that csel-cuda-02.cselabs.umn.edu is **not** available. If this is your assigned cuda machine, then you will have to use one of the other machines. Please select at random from the above list. In order to run the tests for this assignment, you will need to download the zip file, unzip, navigate to the corresponding directory, then run the following:
+
+```
+nvcc -Xptxas -O3 -O3 -arch=sm_75 convolution.cu -o convolution_hw
+./convolution_hw
+```
 
 ### **To use Colab:**
 
@@ -114,16 +129,16 @@ Provide a **thorough explanation** of why the kernels perform in the order that 
 
 ## **(4) Fastest kernel comparison on T4 vs A100 (2 points)**
 
-After completing your exploration:
+The following is a table of timings (in ms) for a T4 and A100 GPU with a fixed configuration of the macro definitions (`OPT_BLOCK_W`, `OPT_COARSEN_X`, etc.). In other words, they are running the exact same problem, only the hardware has changed.
 
-1. Select the **fastest observed configuration** for your fastest kernel.  
-2. Run that configuration:
-   - on an **A100**
-   - and on a **T4**
+| Function    | GPU A     | GPU B   |
+|-------------|-----------|---------|
+| function_a  | 12.253    | 2.333   |
+| function_b  | 11.73     | 2.787   |
+| function_c  | 23.50     | 6.957   |
+| function_d  | 6.78      | 1.242   |
 
-3. Report both runtimes.
-
-Then give a **hardware-based explanation** of why one GPU is faster.
+You must first determine which column corresponds to the timings on a T4 GPU, and which on an A100 GPU. Then give a **hardware-based explanation** of why the the GPU you chose is faster grounded in concepts we have covered in the course lectures.
 
 ---
 
