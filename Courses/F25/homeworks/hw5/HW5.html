@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>HW5</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="hw5-pair-wise-batch-gemm-kernel"><strong>HW5: Pair-Wise Batch
+GEMM Kernel</strong></h1>
+<p><strong>Due:</strong> December 21<br />
+<strong>Submission Link:</strong>
+https://canvas.umn.edu/courses/518528/assignments/4943255</p>
+<hr />
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>In this assignment, you will implement an optimized CUDA kernel for
+performing <strong>pair-wise batched matrix multiplication</strong>.
+Given:</p>
+<ul>
+<li>A list of matrices <span class="math inline">\(A_0, A_1, \dots,
+A_{N_A-1}\)</span></li>
+<li>A list of matrices <span class="math inline">\(B_0, B_1, ...,
+B_{N_B-1}\)</span></li>
+</ul>
+<p>each of size <strong>4×4</strong>, your goal is to compute:</p>
+<p>$ C = <em>{i=0}^{N_A - 1} </em>{j=0}^{N_B - 1} A_i B_j $</p>
+<p>This requires multiplying <strong>every pair</strong> <span
+class="math inline">\(A_i, B_j\)</span> and summing their results.</p>
+<p>There are <strong>no scaling coefficients</strong>, just plain matrix
+multiplication with accumulation.</p>
+<p>Your job is to dramatically reduce global memory traffic, increase
+arithmetic intensity, and build a high-performance CUDA kernel.</p>
+<hr />
+<h2 id="file-structure-editing-rules-important"><strong>📁 File
+Structure &amp; Editing Rules (Important)</strong></h2>
+<p>Your starter code is split across several <code>.cu</code> and
+<code>.h</code> files.</p>
+<h3 id="you-must-only-modify-one-file">✔ You must only modify one
+file:</h3>
+<p>optimized_kernel.cu</p>
+<p>This is also the <strong>only file you will submit</strong>.</p>
+<p>It contains:</p>
+<ul>
+<li>The kernel <code>sgemm_optimized_batched_kernel</code></li>
+<li>The wrapper <code>batched_pairwise_optimized(..)</code></li>
+</ul>
+<h3 id="do-not-modify-any-other-project-files">❌ Do
+<strong>not</strong> modify any other project files:</h3>
+<ul>
+<li><code>main.cu</code></li>
+<li><code>common.h</code></li>
+<li><code>utilities.[ch]</code></li>
+<li><code>naive_kernel.[ch]</code></li>
+</ul>
+<p>Changing these will likely break the autograder and result in a
+<strong>score of 0</strong>.</p>
+<p>The provided version of <code>optimized_kernel.cu</code> initially
+duplicates the naive functionality so the project runs immediately. You
+must replace it with an optimized implementation. You can update this
+file any way you like, so long as the autograder functions properly and
+your function signature for <code>batched_pairwise_optimized</code>
+remains the same as in the present file.</p>
+<p>In order to run the autograder locally, be sure that you are on your
+assigned csel-cuda lab machine, which will have a T4 GPU. You can run
+the autograder with</p>
+<pre><code>chmod +u+x run.sh
+./run.sh</code></pre>
+<hr />
+<h2 id="problem-definition-all-pairs-matrix-multiplication"><strong>🎯
+Problem Definition: All-Pairs Matrix Multiplication</strong></h2>
+<p>You are given:</p>
+<ul>
+<li><span class="math inline">\(512\)</span> matrices <span
+class="math inline">\(A_i \in \mathbb{R}^{4 \times 4}\)</span></li>
+<li><span class="math inline">\(512\)</span> matrices <span
+class="math inline">\(B_j \in \mathbb{R}^{4 \times 4}\)</span></li>
+</ul>
+<p>Your task is to compute:</p>
+<p><span class="math display">\[
+C = \sum_{i=0}^{511} \sum_{j=0}^{511} A_i B_j
+\]</span></p>
+<ul>
+<li>Each multiplication produces a <strong>4×4</strong> matrix.</li>
+<li>You must sum all of them into a <strong>single</strong> 4×4 output
+matrix.</li>
+<li>There are <strong>262,144</strong> matrix multiplications.</li>
+</ul>
+<p>Your kernel must compute this efficiently.</p>
+<hr />
+<h2 id="hard-coded-dimensions"><strong>🔒 Hard-Coded
+Dimensions</strong></h2>
+<p>This assignment is <strong>not</strong> about writing a general GEMM
+implementation.</p>
+<p>All matrices are <strong>4×4</strong>, and the batch sizes are
+fixed:</p>
+<p>M = 4 N = 4 K = 4 NUM_A = 512 NUM_B = 512</p>
+<p>Anything that increases speed is allowed <em>as long as</em> the
+results are correct and you <strong>do not</strong> make use of any cuda
+library functions which abstract shared memory, coarsening, vectorized
+loading away from you.</p>
+<hr />
+<h2 id="strategies-for-high-performance"><strong>🚀 Strategies for High
+Performance</strong></h2>
+<p>To maximize performance, focus on:</p>
+<h3 id="increasing-arithmetic-intensity"><strong>1. Increasing
+arithmetic intensity</strong></h3>
+<p>Load data once, reuse it many times.</p>
+<h3 id="efficient-block-level-reductions"><strong>2. Efficient
+block-level reductions</strong></h3>
+<p>Make use of reductions both within and between threadblocks for
+improved speedups.</p>
+<h3 id="vectorized-memory-access"><strong>3. Vectorized memory
+access</strong></h3>
+<p>Use <code>float4</code> to perform aligned, coalesced loads.</p>
+<h3 id="shared-memory"><strong>4. Shared Memory</strong></h3>
+<p>Be sure to make extensive use of shared memory constructs.</p>
+<hr />
+<h2 id="autograding-scoring"><strong>🧪 Autograding &amp;
+Scoring</strong></h2>
+<p>The autograder evaluates:</p>
+<h3 id="points-correctness"><strong>✔ 5 points —
+Correctness</strong></h3>
+<ul>
+<li>Your output must match the expected result within tolerance.</li>
+<li>If your code fails to compile or crashes:
+<ul>
+<li><strong>Correctness = 0</strong></li>
+<li><strong>Performance = 0</strong></li>
+<li><strong>Total Score = 0</strong></li>
+</ul></li>
+</ul>
+<h3 id="points-performance"><strong>✔ 10 points —
+Performance</strong></h3>
+<p>The autograder runs the benchmark <strong>5 times</strong> and uses
+the <strong>maximum speedup</strong>:</p>
+<p><span class="math display">\[
+\text{speedup} = \frac{T_\text{naive}}{T_\text{optimized}}
+\]</span></p>
+<p>Let:</p>
+<ul>
+<li><code>S</code> = your measured speedup<br />
+</li>
+<li><code>S₀</code> = instructor-defined benchmark (we are using a
+speedup of 100x. If you achieve at least 100x speedups over the naive
+kernel, you will get full credit.)</li>
+</ul>
+<p>Your performance score is:</p>
+<p><span class="math display">\[
+\text{score}_\text{perf}
+= \begin{cases}
+0, &amp; S \le 1 \\
+10 \cdot \frac{S}{S_0}, &amp; 1 &lt; S &lt; S_0 + 1 \\
+10, &amp; S \ge S_0 + 1
+\end{cases}
+\]</span></p>
+<p>Total assignment score:</p>
+<p><span class="math display">\[
+\text{score} = \text{correctness (0–5)} + \text{performance (0–10)}
+\]</span></p>
+<p>The autograder prints all timing information and computed scores.</p>
+<hr />
+<h2 id="submission-instructions"><strong>📦 Submission
+Instructions</strong></h2>
+<p>You must submit exactly one file:</p>
+<p>optimized_kernel.cu</p>
+<p>Do <strong>not</strong> compress it.<br />
+Do <strong>not</strong> rename it.<br />
+Do <strong>not</strong> modify other files.</p>
+<p>The autograder compiles using:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nvcc</span> <span class="at">-O3</span> <span class="at">-arch</span><span class="op">=</span>sm_75 <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    main.cu utilities.cu naive_kernel.cu optimized_kernel.cu <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> batched_gemm <span class="kw">&amp;&amp;</span> <span class="ex">./batched_gemm</span> <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> <span class="at">-f</span> batched_gemm</span></code></pre></div>
+<p>Your file must compile cleanly under this exact command.</p>
+<h2 id="final-notes">📌 Final Notes</h2>
+<p>The assignment is 100% autograded.</p>
+<p>Only modify optimized_kernel.cu.</p>
+<p>Hardcoding optimizations is encouraged.</p>
+<p>Shared memory, tiling, vectorized loads, and reduction patterns will
+be essential for speed.</p>
+<p>Readability is appreciated, but performance matters most.</p>
+</body>
+</html>
