@@ -101,6 +101,12 @@ GEMM Kernel</strong></h1>
 <strong>Submission Link:</strong>
 https://canvas.umn.edu/courses/518528/assignments/4943255</p>
 <hr />
+<h2 id="group-submission"><strong>Group Submission</strong></h2>
+<p>This assignment is a group submission with the same groups as used
+for your final project. Only one member of your group needs to submit
+this assignment. This score will apply to all students in your
+group.</p>
+<hr />
 <h2 id="overview"><strong>Overview</strong></h2>
 <p>In this assignment, you will implement an optimized CUDA kernel for
 performing <strong>pair-wise batched matrix multiplication</strong>.
@@ -184,9 +190,9 @@ implementation.</p>
 fixed:</p>
 <p>M = 4 N = 4 K = 4 NUM_A = 512 NUM_B = 512</p>
 <p>Anything that increases speed is allowed <em>as long as</em> the
-results are correct and you <strong>do not</strong> make use of any cuda
-library functions which abstract shared memory, coarsening, vectorized
-loading away from you.</p>
+results are correct and you <strong>do not</strong> make use of any more
+complex cuda library functions (cuBLAS, tensor cores) which abstract
+shared memory, coarsening, vectorized loading away from you.</p>
 <hr />
 <h2 id="strategies-for-high-performance"><strong>🚀 Strategies for High
 Performance</strong></h2>

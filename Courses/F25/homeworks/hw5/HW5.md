@@ -5,6 +5,12 @@
 
 ---
 
+## **Group Submission**
+
+This assignment is a group submission with the same groups as used for your final project. Only one member of your group needs to submit this assignment. This score will apply to all students in your group.
+
+---
+
 ## **Overview**
 
 In this assignment, you will implement an optimized CUDA kernel for performing **pair-wise batched matrix multiplication**. Given:
@@ -96,7 +102,7 @@ NUM_A = 512
 NUM_B = 512
 
 
-Anything that increases speed is allowed *as long as* the results are correct and you **do not** make use of any cuda library functions which abstract shared memory, coarsening, vectorized loading away from you.
+Anything that increases speed is allowed *as long as* the results are correct and you **do not** make use of any more complex cuda library functions (cuBLAS, tensor cores) which abstract shared memory, coarsening, vectorized loading away from you.
 
 ---
 
